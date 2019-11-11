@@ -1,0 +1,11 @@
+select.form-control[multiple]
+{
+  height: 300px;
+}
+.film-row {
+  padding-bottom: 1em;
+}
+
+.container-fluid {
+  padding-top: 1em;
+}

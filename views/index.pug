@@ -1,0 +1,83 @@
+html
+  head
+    title Archive.org Movie Browser
+    link(rel='stylesheet' href='/bootstrap.min.css')
+    link(rel='stylesheet' href='/style.css')
+  body
+    nav(class='navbar navbar-expand-lg navbar-dark bg-primary')
+      a(class='navbar-brand' href='/') Archive.org Movie Browser
+    div(class='container-fluid')
+      div(class='row')
+        div(class='col-md-2')
+          h2 Filter
+          form()
+            div(class='form-group')
+              label(for='actors') Actors
+              select(
+                id='actors'
+                name='actors'
+                class='form-control'
+              )
+                option(value='') Select One
+                each actor in actors
+                  option(
+                    value=actor.id
+                    selected=selected.actors.indexOf(actor.id) >= 0
+                  ) #{actor.name} (#{actor.role_count})
+            div(class='form-group')
+              label(for='directors') Directors
+              select(
+                id='directors'
+                name='directors'
+                class='form-control'
+              )
+                option(value='') Select One
+                each director in directors
+                  option(
+                    value=director.id
+                    selected=selected.directors.indexOf(director.id) >= 0
+                  ) #{director.name} (#{director.role_count})
+            div(class='form-group')
+              label(for='genres') Genres
+              select(
+                id='genres'
+                name='genres'
+                class='form-control'
+              )
+                option(value='') Select One
+                each genre in genres
+                  option(
+                    value=genre.id
+                    selected=selected.genres.indexOf(genre.id) >= 0
+                  ) #{genre.genre} (#{genre.films_count})
+            div(class='form-group')
+              label(for='years') Years
+              select(
+                id='years'
+                name='years'
+                class='form-control'
+              )
+                option(value='') Select One
+                each year in years
+                  option(
+                    value=year.year
+                    selected=selected.years.indexOf(year.year) >= 0
+                  ) #{year.year} (#{year.film_count})
+            div
+              button(type='submit' class='btn btn-primary') Search
+        div(class='col')
+          if films.length > 0
+            h2 Results
+            each row in films
+              div(class='row film-row')
+                each film in row
+                  div(class='col-md-2')
+                    if film.omdb_metadata.Poster && film.omdb_metadata.Poster !== 'N/A'
+                      a(href='https://archive.org/details/' + film.archiveorg_identifier target='_blank')
+                        img(src=film.omdb_metadata.Poster class='img-fluid')
+                    else
+                      div(class='card')
+                        div(class='card-body')
+                          h5(class='card-title')
+                            a(href='https://archive.org/details/' + film.archiveorg_identifier target='_blank') #{film.title} (#{film.year})
+                              

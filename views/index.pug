@@ -9,62 +9,66 @@ html
     div(class='container-fluid')
       div(class='row')
         div(class='col-md-2')
-          h2 Filter
-          form()
-            div(class='form-group')
-              label(for='actors') Actors
-              select(
-                id='actors'
-                name='actors'
-                class='form-control'
-              )
-                option(value='') Select One
-                each actor in actors
-                  option(
-                    value=actor.id
-                    selected=selected.actors.indexOf(actor.id) >= 0
-                  ) #{actor.name} (#{actor.role_count})
-            div(class='form-group')
-              label(for='directors') Directors
-              select(
-                id='directors'
-                name='directors'
-                class='form-control'
-              )
-                option(value='') Select One
-                each director in directors
-                  option(
-                    value=director.id
-                    selected=selected.directors.indexOf(director.id) >= 0
-                  ) #{director.name} (#{director.role_count})
-            div(class='form-group')
-              label(for='genres') Genres
-              select(
-                id='genres'
-                name='genres'
-                class='form-control'
-              )
-                option(value='') Select One
-                each genre in genres
-                  option(
-                    value=genre.id
-                    selected=selected.genres.indexOf(genre.id) >= 0
-                  ) #{genre.genre} (#{genre.films_count})
-            div(class='form-group')
-              label(for='years') Years
-              select(
-                id='years'
-                name='years'
-                class='form-control'
-              )
-                option(value='') Select One
-                each year in years
-                  option(
-                    value=year.year
-                    selected=selected.years.indexOf(year.year) >= 0
-                  ) #{year.year} (#{year.film_count})
-            div
-              button(type='submit' class='btn btn-primary') Search
+          div(class='card')
+            div(class='card-body')
+              h2 Filter
+              form()
+                div(class='form-group')
+                  label(for='actors') Actors
+                  select(
+                    id='actors'
+                    name='actors'
+                    class='form-control'
+                  )
+                    option(value='') Select One
+                    each actor in actors
+                      option(
+                        value=actor.id
+                        selected=selected.actors.indexOf(actor.id) >= 0
+                      ) #{actor.name} (#{actor.role_count})
+                div(class='form-group')
+                  label(for='directors') Directors
+                  select(
+                    id='directors'
+                    name='directors'
+                    class='form-control'
+                  )
+                    option(value='') Select One
+                    each director in directors
+                      option(
+                        value=director.id
+                        selected=selected.directors.indexOf(director.id) >= 0
+                      ) #{director.name} (#{director.role_count})
+                div(class='form-group')
+                  label(for='genres') Genres
+                  select(
+                    id='genres'
+                    name='genres'
+                    class='form-control'
+                  )
+                    option(value='') Select One
+                    each genre in genres
+                      option(
+                        value=genre.id
+                        selected=selected.genres.indexOf(genre.id) >= 0
+                      ) #{genre.genre} (#{genre.films_count})
+                div(class='form-group')
+                  label(for='years') Years
+                  select(
+                    id='years'
+                    name='years'
+                    class='form-control'
+                  )
+                    option(value='') Select One
+                    each year in years
+                      option(
+                        value=year.year
+                        selected=selected.years.indexOf(year.year) >= 0
+                      ) #{year.year} (#{year.film_count})
+                div
+                  button(type='submit' class='btn btn-primary') Search
+                  | &nbsp;
+                  button(class='btn btn-secondary' id='reset') Reset
         div(class='col')
           if films.length > 0
             h2 Results
@@ -79,5 +83,5 @@ html
                       div(class='card')
                         div(class='card-body')
                           h5(class='card-title')
-                            a(href='https://archive.org/details/' + film.archiveorg_identifier target='_blank') #{film.title} (#{film.year})
-                              
+                            a(href='https://archive.org/details/' + film.archiveorg_identifier target='_blank') #{film.title} (#{film.year})                              
+    script(src='/script.js')

@@ -9,3 +9,7 @@ select.form-control[multiple]
 .container-fluid {
   padding-top: 1em;
 }
+
+.btn-toolbar {
+  padding: 1em 0;
+}

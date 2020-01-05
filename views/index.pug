@@ -85,14 +85,12 @@ html
               div(class='row film-row')
                 each film in row
                   div(class='col-md-2')
-                    if film.omdb_metadata.Poster && film.omdb_metadata.Poster !== 'N/A'
-                      a(href='https://archive.org/details/' + film.archiveorg_identifier target='_blank')
-                        img(src=film.omdb_metadata.Poster class='img-fluid')
-                    else
-                      div(class='card')
-                        div(class='card-body')
-                          h5(class='card-title')
-                            a(href='https://archive.org/details/' + film.archiveorg_identifier target='_blank') #{film.title} (#{film.year})
+                    div(class='poster-container')
+                      if film.omdb_metadata && film.omdb_metadata.Poster !== 'N/A'
+                        a(href='https://archive.org/details/' + film.archiveorg_identifier target='_blank' class='poster' style=`background-image: url(${film.omdb_metadata.Poster});`)
+                      else
+                        a(href='https://archive.org/details/' + film.archiveorg_identifier target='_blank' class='no-poster')
+                          div #{film.title} (#{film.year})
             if maxPages > 1
               div(class='d-flex justify-content-center')
                 div(class='btn-toolbar')
